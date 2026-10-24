@@ -1,0 +1,11 @@
+# Security headers applied to every response (Netlify / compatible static hosts).
+# On a host that does not read _headers, replicate these in its config.
+
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' https://images.pexels.com data:; connect-src 'self' https://efgcecwpogmwrsbuuehn.supabase.co; base-uri 'self'; form-action 'self' https://wa.me; frame-ancestors 'none'; object-src 'none'
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=()
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  X-XSS-Protection: 0

@@ -1,0 +1,166 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-heading: 'Outfit', system-ui, -apple-system, sans-serif;
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 130px;
+    font-family: var(--font-sans);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+}
+
+/* Navbar 1 - Sliding underline styles */
+.sliding-navbar-header {
+  position: sticky;
+  top: 3.6rem; /* sits flush under the sticky header on mobile */
+  background: #ffffff;
+  border: 1px solid #dde1ea;
+  border-radius: 1rem;
+  padding: 0 1rem;
+  z-index: 20;
+}
+
+@media (min-width: 640px) {
+  .sliding-navbar-header {
+    top: 4rem; /* 64px aligns under header on tablet/desktop */
+    padding: 0 1.5rem;
+  }
+}
+
+.sliding-navbar-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  position: relative;
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+}
+
+.sliding-navbar-menu::-webkit-scrollbar {
+  display: none;
+}
+
+.sliding-navbar-link {
+  display: block;
+  padding: 14px 6px;
+  color: #5c6475;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: color 0.25s;
+  cursor: pointer;
+}
+
+@media (min-width: 640px) {
+  .sliding-navbar-link {
+    padding: 16px 20px;
+    font-size: 15px;
+  }
+}
+
+.sliding-navbar-link:hover,
+.sliding-navbar-link.active {
+  color: #161a23;
+}
+
+.sliding-navbar-link:focus-visible {
+  outline: 2px solid #3d5afe;
+  outline-offset: -4px;
+}
+
+.sliding-navbar-bar {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  background: #3d5afe;
+  border-radius: 3px;
+  pointer-events: none;
+  transition: transform 0.4s cubic-bezier(0.65, 0, 0.25, 1), width 0.4s cubic-bezier(0.65, 0, 0.25, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sliding-navbar-bar,
+  .sliding-navbar-link {
+    transition: none !important;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Hide scrollbars on swipe rails (Tailwind v4 ships no scrollbar-none utility) */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .scroll-smooth { scroll-behavior: auto; }
+}
+
+/* Coolvetica is a licensed font that no public CDN hosts, so it is used only if installed on the visitor's device.
+   To ship it: place coolvetica.woff2 in /public/fonts/ and add this line inside the @font-face below:
+   src: local('Coolvetica'), url('/fonts/coolvetica.woff2') format('woff2'); */
+@font-face {
+  font-family: 'Coolvetica';
+  src: local('Coolvetica'), local('Coolvetica Rg');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+.font-coolvetica {
+  font-family: 'Coolvetica', 'Inter Tight', system-ui, -apple-system, sans-serif;
+  letter-spacing: 0.005em;
+}
+
+/* Mobile polish */
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+body {
+  overflow-x: clip;
+}
+button, a, [role="button"] {
+  touch-action: manipulation;
+}
+/* 16px inputs stop iOS Safari zooming the page when a field is focused */
+@media (max-width: 639px) {
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+}
